@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { ThemeProvider as Provider } from 'styled-components'
 
-import { defaultTheme } from '../globalStyles/variables'
+import { defaultTheme } from '../../globalStyles/variables'
 
 export const ThemeProvider = (props) => {
   const [theme, setTheme] = useState(defaultTheme)
