@@ -6,7 +6,6 @@ module.exports = {
   entry: './src/index.jsx',
   output: {
     path: path.join(__dirname, 'dist'),
-    publicPath: '/',
     filename: 'bundle.js',
   },
   resolve: {
@@ -18,6 +17,10 @@ module.exports = {
         test: /.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)$/,
+        loader: 'file-loader',
       },
     ],
   },
