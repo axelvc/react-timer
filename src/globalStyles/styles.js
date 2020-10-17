@@ -100,9 +100,13 @@ export default css`
     }
   }
 
+  hr,
+  br {
+    margin: 15px 0;
+  }
+
   hr {
     border: 1px solid ${({ theme }) => theme.textSecondary};
     border-bottom: none;
-    margin: 0;
   }
 `

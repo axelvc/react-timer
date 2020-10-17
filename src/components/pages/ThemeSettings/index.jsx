@@ -11,14 +11,15 @@ export const ThemeSettings = () => {
 
   return (
     <main>
-      {Object.entries(theme).map(([key, color], index) => (
+      {Object.entries(theme).map(([key, color], index, arr) => (
         <React.Fragment key={key}>
           <ColorInput
             title={key}
             color={color}
             onChange={(newValue) => changeTheme(newValue)}
           />
-          {divisionIndexes.includes(index) && <hr />}
+          {index !== arr.length - 1 &&
+            (divisionIndexes.includes(index) ? <hr /> : <br />)}
         </React.Fragment>
       ))}
     </main>
