@@ -1,5 +1,5 @@
 import React from 'react'
 
 export const Timer = () => {
-  return <div>timer</div>
+  return <main>timer</main>
 }
