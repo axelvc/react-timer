@@ -6,11 +6,14 @@ import { defaultTheme } from '../../globalStyles/variables'
 export const ThemeProvider = (props) => {
   const [theme, setTheme] = useState(defaultTheme)
 
-  const changeTheme = (newTheme) => {
-    setTheme({
+  const changeTheme = (newValues) => {
+    const newTheme = {
       ...theme,
-      ...newTheme,
-    })
+      ...newValues,
+    }
+
+    localStorage.setItem('theme', JSON.stringify(newTheme))
+    setTheme(newTheme)
   }
 
   return <Provider theme={{ ...theme, changeTheme }} {...props} />

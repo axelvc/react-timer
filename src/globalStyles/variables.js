@@ -1,4 +1,4 @@
-export const defaultTheme = {
+export const defaultTheme = JSON.parse(localStorage.getItem('theme')) || {
   background: '#fafafa',
   textPrimary: '#252627',
   textSecondary: '#abb8c3',
