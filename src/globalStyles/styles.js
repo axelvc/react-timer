@@ -37,6 +37,10 @@ export default css`
     font-size: ${fontSizes.title};
   }
 
+  h6 {
+    font-size: 1.1rem;
+  }
+
   ul {
     margin: 0;
     padding: 0;
@@ -105,10 +109,9 @@ export default css`
   a {
     color: ${({ theme }) => theme.workPrimary};
     transition: ${transitionTimes.fast};
-    outline: none;
 
-    &::focus,
-    &:hovver {
+    &:focus,
+    &:hover {
       color: ${({ theme }) => theme.restPrimary};
     }
   }

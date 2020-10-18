@@ -2,6 +2,7 @@ import React from 'react'
 
 import { NumberInput } from './NumberInput'
 import { SwitchButton } from './SwitchButton'
+import { Main, AboutLink } from './styles'
 
 import { useSettings } from '../../context/SettingsContext'
 
@@ -29,7 +30,7 @@ export const Settings = () => {
   }
 
   return (
-    <main>
+    <Main>
       {Object.entries(settings).map(
         ([key, { type, value, defaultValue, dependencies }], index, arr) => (
           <React.Fragment key={key}>
@@ -48,10 +49,11 @@ export const Settings = () => {
                 onChange={handleChange}
               />
             )}
-            {index !== arr.length - 1 && <br />}
+            <br />
           </React.Fragment>
         ),
       )}
-    </main>
+      <AboutLink to="about">About app</AboutLink>
+    </Main>
   )
 }
