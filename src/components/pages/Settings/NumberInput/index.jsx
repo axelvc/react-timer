@@ -1,12 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import { InputBox } from '../../../common/InputBox'
 import { Input } from './styles'
 
-export const NumberInput = ({ title, value, onChange, disabled }) => {
-  const [defaultValue] = useState(value)
-
+export const NumberInput = ({
+  title,
+  defaultValue,
+  value,
+  onChange,
+  disabled,
+}) => {
   function handleType(ev) {
     const { key, target } = ev
     const { value } = target
@@ -17,7 +21,7 @@ export const NumberInput = ({ title, value, onChange, disabled }) => {
   }
 
   function handleChange(ev) {
-    const newValue = Number(ev.target.value || defaultValue)
+    const newValue = Number(ev.target.value) || defaultValue
 
     onChange(title, newValue)
     ev.target.value = newValue
@@ -43,6 +47,7 @@ export const NumberInput = ({ title, value, onChange, disabled }) => {
 NumberInput.propTypes = {
   title: PropTypes.string.isRequired,
   value: PropTypes.number.isRequired,
+  defaultValue: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
 }

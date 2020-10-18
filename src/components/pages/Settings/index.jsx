@@ -31,12 +31,13 @@ export const Settings = () => {
   return (
     <main>
       {Object.entries(settings).map(
-        ([key, { type, value, dependencies }], index, arr) => (
+        ([key, { type, value, defaultValue, dependencies }], index, arr) => (
           <React.Fragment key={key}>
             {type === 'number' ? (
               <NumberInput
                 title={key}
                 value={value}
+                defaultValue={defaultValue}
                 onChange={handleChange}
                 disabled={dependencies && handleDisabled(dependencies)}
               />

@@ -6,6 +6,7 @@ const defaultSettings = JSON.parse(localStorage.getItem('settings')) || {
   cycleTime: {
     type: 'number',
     value: 25,
+    defaultValue: 25,
   },
   useRestTime: {
     type: 'boolean',
@@ -14,6 +15,7 @@ const defaultSettings = JSON.parse(localStorage.getItem('settings')) || {
   restTime: {
     type: 'number',
     value: 5,
+    defaultValue: 5,
     dependencies: {
       useRestTime: true,
     },
@@ -21,6 +23,7 @@ const defaultSettings = JSON.parse(localStorage.getItem('settings')) || {
   longRestTime: {
     type: 'number',
     value: 20,
+    defaultValue: 20,
     dependencies: {
       useRestTime: true,
     },
@@ -28,6 +31,7 @@ const defaultSettings = JSON.parse(localStorage.getItem('settings')) || {
   cyclesForALongRest: {
     type: 'number',
     value: 4,
+    defaultValue: 4,
     dependencies: {
       useRestTime: true,
     },
