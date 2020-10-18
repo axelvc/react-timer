@@ -47,6 +47,21 @@ export default css`
   }
 
   input,
+  button,
+  label {
+    outline: none;
+
+    &:focus {
+      box-shadow: 0 0 0 2px ${({ theme }) => theme.restPrimary};
+      z-index: 1;
+    }
+  }
+
+  label {
+    font-size: ${fontSizes.large};
+  }
+
+  input,
   button {
     font-family: inherit;
     font-size: inherit;
@@ -57,18 +72,15 @@ export default css`
     padding: 0;
     margin: 0;
     height: 28px;
-    outline: none;
 
-    &:focus {
-      box-shadow: 0 0 0 2px ${({ theme }) => theme.restPrimary};
-      z-index: 1;
-    }
+    ${'' /* &:focus {
+    } */}
   }
 
   input {
     border: 1px solid ${({ theme }) => theme.textSecondary};
     border-radius: 3px;
-    font-size: ${fontSizes.small};
+    font-size: ${fontSizes.normal};
     padding: 0 8px;
     box-sizing: border-box;
 

@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import { InputBox } from '../../common/InputBox'
+import { InputBox } from '../../../common/InputBox'
+import { Input } from './styles'
 
 export const NumberInput = ({ title, value, onChange, disabled }) => {
   const [defaultValue] = useState(value)
@@ -24,10 +25,11 @@ export const NumberInput = ({ title, value, onChange, disabled }) => {
 
   return (
     <InputBox title={title}>
-      <input
+      <Input
+        type="number"
+        id={title}
         min="0"
         max="999"
-        type="number"
         disabled={disabled}
         defaultValue={value}
         placeholder={defaultValue}
