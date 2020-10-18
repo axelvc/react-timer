@@ -59,6 +59,7 @@ export default css`
 
   label {
     font-size: ${fontSizes.large};
+    user-select: none;
   }
 
   input,
@@ -115,6 +116,10 @@ export default css`
   hr,
   br {
     margin: 15px 0;
+  }
+
+  br {
+    user-select: none;
   }
 
   hr {
