@@ -22,3 +22,9 @@ export const fontSizes = {
   subTitle: '1.5rem',
   title: '3.5rem',
 }
+
+export const fontWeights = {
+  regular: 'normal',
+  medium: 500,
+  semiBold: 600,
+}

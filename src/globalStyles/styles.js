@@ -1,11 +1,11 @@
 import { css } from 'styled-components'
-import { fontSizes, transitionTimes } from './variables'
+import { fontSizes, transitionTimes, fontWeights } from './variables'
 
 export default css`
   body {
     margin: 0;
     font-family: 'Montserrat';
-    font-weight: 600;
+    font-weight: ${fontWeights.medium};
   }
 
   #app {
@@ -33,12 +33,21 @@ export default css`
     margin: 0;
   }
 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: ${fontWeights.semiBold};
+  }
+
   h1 {
     font-size: ${fontSizes.title};
   }
 
   h6 {
-    font-size: 1.1rem;
+    font-size: ${fontSizes.large};
   }
 
   ul {
@@ -52,7 +61,8 @@ export default css`
 
   input,
   button,
-  label {
+  label,
+  a {
     outline: none;
 
     &:focus {
@@ -63,6 +73,7 @@ export default css`
 
   label {
     font-size: ${fontSizes.large};
+    font-weight: ${fontWeights.semiBold};
     user-select: none;
   }
 
@@ -77,9 +88,6 @@ export default css`
     padding: 0;
     margin: 0;
     height: 28px;
-
-    ${'' /* &:focus {
-    } */}
   }
 
   input {
