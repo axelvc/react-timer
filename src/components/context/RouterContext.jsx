@@ -3,7 +3,7 @@ import React, { useState, createContext, useContext } from 'react'
 const RouterContext = createContext()
 
 export const RouterProvider = (props) => {
-  const [route, setRoute] = useState('about')
+  const [route, setRoute] = useState('/')
 
   return <RouterContext.Provider value={[route, setRoute]} {...props} />
 }
