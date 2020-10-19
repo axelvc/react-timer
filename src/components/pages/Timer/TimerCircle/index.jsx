@@ -11,7 +11,7 @@ export const TimerCircle = ({ isRest, totalTime, timeLeft, ...props }) => {
     const progress = (timeLeft * 100) / totalTime
     const offsetLeft = STROKE_LENGTH * (progress / 100)
 
-    return STROKE_LENGTH - offsetLeft
+    return (STROKE_LENGTH - offsetLeft).toFixed(2)
   }
 
   return (

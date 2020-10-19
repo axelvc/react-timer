@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-import { transitionTimes } from '../../../../globalStyles/variables'
-
 export const Container = styled.section`
   position: relative;
   height: 100%;
@@ -16,7 +14,6 @@ export const Container = styled.section`
         isRest ? theme.restPrimary : theme.workPrimary};
       transform-origin: center;
       transform: rotate(-90deg) rotateX(-180deg);
-      transition: stroke-dashoffset linear ${transitionTimes.fast};
     }
   }
 `
