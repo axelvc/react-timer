@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { Container } from './styles'
 
-export const InputBox = ({ title, children }) => {
+export const InputBox = ({ title, disabled = false, children }) => {
   const humanTitle =
     title[0].toUpperCase() +
     title
@@ -12,7 +12,7 @@ export const InputBox = ({ title, children }) => {
       .toLowerCase()
 
   return (
-    <Container>
+    <Container disabled={disabled}>
       <label htmlFor={title}> {humanTitle}</label>
       {children}
     </Container>
@@ -20,6 +20,7 @@ export const InputBox = ({ title, children }) => {
 }
 
 InputBox.propTypes = {
-  title: PropTypes.string,
-  children: PropTypes.element,
+  title: PropTypes.string.isRequired,
+  children: PropTypes.element.isRequired,
+  disabled: PropTypes.bool,
 }

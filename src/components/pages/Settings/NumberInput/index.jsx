@@ -28,7 +28,7 @@ export const NumberInput = ({
   }
 
   return (
-    <InputBox title={title}>
+    <InputBox title={title} disabled={disabled}>
       <Input
         type="number"
         id={title}
