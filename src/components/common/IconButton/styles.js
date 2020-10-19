@@ -2,12 +2,20 @@ import styled, { css } from 'styled-components'
 
 import { transitionTimes } from '../../../globalStyles/variables'
 
-const getColors = ({ theme, alternate }) => css`
+const activeColors = ({ theme, alternate }) => css`
   color: ${alternate ? theme.restPrimary : theme.workPrimary};
   background: ${alternate ? theme.restSecondary : theme.workSecondary};
 `
 
-const BaseButton = styled.button`
+const flatColors = ({ theme, alternate }) => css`
+  color: ${theme.textSecondary};
+
+  &:hover {
+    ${activeColors({ theme, alternate })}
+  }
+`
+
+export const Button = styled.button`
   border: none;
   border-radius: 50%;
   width: 28px;
@@ -19,16 +27,6 @@ const BaseButton = styled.button`
     transform-origin: center;
     transform: scale(0.8);
   }
-`
 
-export const NormalButtonIcon = styled(BaseButton)`
-  ${getColors}
-`
-
-export const FlatButtonIcon = styled(BaseButton)`
-  color: ${({ theme }) => theme.textSecondary};
-
-  &:hover {
-    ${getColors}
-  }
+  ${({ flat, ...props }) => (flat ? flatColors(props) : activeColors(props))}
 `

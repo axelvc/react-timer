@@ -17,9 +17,20 @@ module.exports = {
     react: {
       version: 'detect',
     },
+    'import/extensions': ['.js', '.jsx'],
   },
   rules: {
     'comma-dangle': ['error', 'always-multiline'],
     'space-before-function-paren': ['error', 'never'],
+    'arrow-body-style': 'error',
+    'import/no-useless-path-segments': [
+      'error',
+      {
+        noUselessIndex: true,
+      },
+    ],
+    'react/jsx-fragments': ['error', 'syntax'],
+    'react/jsx-no-useless-fragment': 'error',
+    'react/prop-types': 'error',
   },
 }

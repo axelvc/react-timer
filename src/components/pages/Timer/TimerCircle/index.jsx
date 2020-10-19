@@ -15,12 +15,10 @@ export const TimerCircle = ({ isRest, totalTime, timeLeft, ...props }) => {
   }
 
   return (
-    <React.Fragment>
-      <Container isRest={isRest} {...props}>
-        <ProgressCircle strokeDashoffset={getDashOffset(timeLeft, totalTime)} />
-        <Wrapper {...props} />
-      </Container>
-    </React.Fragment>
+    <Container isRest={isRest} {...props}>
+      <ProgressCircle strokeDashoffset={getDashOffset(timeLeft, totalTime)} />
+      <Wrapper {...props} />
+    </Container>
   )
 }
 

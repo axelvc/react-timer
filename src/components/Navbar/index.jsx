@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Nav, Ul, Li, LiExpanded } from './styles'
-import { IconButton } from '../common/IconButton/index.jsx'
+import { IconButton } from '../common/IconButton'
 import CloseIcon from '../../assets/svg/close-icon.svg'
 import ThemeIcon from '../../assets/svg/theme-icon.svg'
 import SettingsIcon from '../../assets/svg/settings-icon.svg'

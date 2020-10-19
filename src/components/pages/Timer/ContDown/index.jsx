@@ -25,7 +25,7 @@ export const ContDown = ({
   }
 
   return (
-    <React.Fragment>
+    <>
       <H1>{humanTime()}</H1>
       <ButtonsContainer>
         <IconButton alternate={isRest} onClick={paused ? onPlay : onPause}>
@@ -35,7 +35,7 @@ export const ContDown = ({
           <CloseCircleIcon />
         </IconButton>
       </ButtonsContainer>
-    </React.Fragment>
+    </>
   )
 }
 
