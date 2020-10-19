@@ -18,12 +18,7 @@ export const Ul = styled.ul`
 `
 
 export const Li = styled.li`
-  width: 28px;
   margin-left: 5px;
-
-  & button {
-    width: 100%;
-  }
 `
 
 export const LiExpanded = styled(Li)`

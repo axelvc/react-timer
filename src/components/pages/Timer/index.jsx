@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react'
 
+import { TimerCircle } from './TimerCircle'
+import { ContDown } from './ContDown'
 import { NextCycleInfo } from './NextCycleInfo'
+import { Container, LargePlayButton } from './styles'
+import PlayCircleIcon from '../../../assets/svg/play-circle-icon.svg'
+
 import { useSettings } from '../../context/SettingsContext'
 
 export const Timer = () => {
@@ -75,33 +80,29 @@ export const Timer = () => {
     })
   }
 
-  function humanTime() {
-    const { timeLeft } = cycle
-    const fixTwoDigits = (n) => n.toString().padStart(2, 0)
-
-    const minutes = fixTwoDigits(Math.floor(timeLeft / 60))
-    const seconds = fixTwoDigits(timeLeft % 60)
-
-    return `${minutes}:${seconds}`
-  }
-
   return (
-    <main>
-      <div>
+    <Container>
+      <TimerCircle
+        isRest={cycle.isRest}
+        totalTime={cycle.totalTime}
+        timeLeft={cycle.timeLeft}
+        running={cycle.running}
+      >
         {cycle.running ? (
-          <div>
-            <p>{humanTime()}</p>
-            <button onClick={cycle.paused ? playTimer : pauseTimer}>
-              {cycle.paused ? 'continue' : 'pause'}
-            </button>
-            <button onClick={endTimer}>cancel</button>
-          </div>
+          <ContDown
+            isRest={cycle.isRest}
+            paused={cycle.paused}
+            timeLeft={cycle.timeLeft}
+            onPlay={playTimer}
+            onPause={pauseTimer}
+            onCancel={endTimer}
+          />
         ) : (
-          <div>
-            <button onClick={playTimer}>play</button>
-          </div>
+          <LargePlayButton alternate={cycle.isRest} onClick={playTimer}>
+            <PlayCircleIcon />
+          </LargePlayButton>
         )}
-      </div>
+      </TimerCircle>
       {!cycle.running && (
         <NextCycleInfo
           totalTime={cycle.totalTime}
@@ -109,6 +110,6 @@ export const Timer = () => {
           isRest={cycle.isRest}
         />
       )}
-    </main>
+    </Container>
   )
 }

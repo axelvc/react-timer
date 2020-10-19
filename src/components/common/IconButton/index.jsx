@@ -1,11 +1,17 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { FlatButtonIcon, NormalButtonIcon } from './styles'
 
-export const IconButton = ({ flat = false, ...props }) => {
+export const IconButton = ({ flat = false, alternate = false, ...props }) => {
   if (flat) {
-    return <FlatButtonIcon {...props} />
+    return <FlatButtonIcon alternate={alternate} {...props} />
   } else {
-    return <NormalButtonIcon {...props} />
+    return <NormalButtonIcon alternate={alternate} {...props} />
   }
+}
+
+IconButton.propTypes = {
+  flat: PropTypes.bool,
+  alternate: PropTypes.bool,
 }
