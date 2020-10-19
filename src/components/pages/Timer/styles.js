@@ -9,6 +9,7 @@ export const Container = styled.main`
   justify-content: space-evenly;
   user-select: none;
 `
+
 export const LargePlayButton = styled(IconButton)`
   height: 60%;
   width: 60%;

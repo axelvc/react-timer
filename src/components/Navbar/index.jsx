@@ -28,7 +28,11 @@ export const Navbar = () => {
         </LiExpanded>
         {routesList.map(({ path, Icon }) => (
           <Li key={path}>
-            <IconButton flat={path !== route} onClick={() => setRoute(path)}>
+            <IconButton
+              flat={path !== route}
+              alternate={path === route}
+              onClick={() => setRoute(path)}
+            >
               <Icon />
             </IconButton>
           </Li>

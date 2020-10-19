@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 import { transitionTimes } from '../../../../globalStyles/variables'
 
@@ -8,7 +8,8 @@ export const Label = styled.label`
   border-radius: 50px;
   cursor: pointer;
   transition: ${transitionTimes.normal} background;
-  background: ${({ theme }) => theme.textSecondary};
+  background: ${({ theme, active }) =>
+    active ? theme.workPrimary : theme.textSecondary};
 
   &::before {
     content: '';
@@ -18,20 +19,7 @@ export const Label = styled.label`
     transform: scale(0.6);
     border-radius: inherit;
     background: ${({ theme }) => theme.background};
+    margin-left: ${({ active }) => (active ? 'calc(100% - 28px)' : 'unset')};
     transition: ${transitionTimes.normal} margin;
   }
-
-  ${({ active }) =>
-    active &&
-    css`
-      background: ${({ theme }) => theme.workPrimary};
-
-      &::before {
-        margin-left: calc(100% - 28px);
-      }
-    `}
-`
-
-export const Input = styled.input`
-  display: none;
 `

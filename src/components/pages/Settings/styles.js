@@ -4,6 +4,10 @@ import { Link } from '../../common/Link'
 
 export const Main = styled.main`
   position: relative;
+
+  input[type='checkbox'] {
+    display: none;
+  }
 `
 
 export const AboutLink = styled(Link)`

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 import { fontSizes } from '../../../../globalStyles/variables'
 
@@ -19,11 +19,6 @@ export const CycleType = styled.p`
   opacity: 0.8;
 
   color: ${({ theme }) => theme.textPrimary};
-  background: ${({ theme }) => theme.workSecondary};
-
-  ${({ isRest, theme }) =>
-    isRest &&
-    css`
-      background: ${theme.restSecondary};
-    `}
+  background: ${({ isRest, theme }) =>
+    isRest ? theme.restSecondary : theme.workSecondary};
 `

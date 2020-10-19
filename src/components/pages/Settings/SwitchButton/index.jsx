@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { InputBox } from '../../../common/InputBox'
-import { Label, Input } from './styles'
+import { Label } from './styles'
 
 export const SwitchButton = ({ title, active, onChange }) => {
   function handleClickSwitch(ev) {
@@ -19,7 +19,7 @@ export const SwitchButton = ({ title, active, onChange }) => {
         htmlFor={title}
         onKeyPress={handleClickSwitch}
       >
-        <Input
+        <input
           tabIndex="-1"
           id={title}
           type="checkbox"

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 export const Container = styled.section`
   position: relative;
@@ -6,24 +6,16 @@ export const Container = styled.section`
 
   & > svg:first-child {
     height: 100%;
-    color: ${({ theme }) => theme.workSecondary};
+    color: ${({ theme, isRest }) =>
+      isRest ? theme.restSecondary : theme.workSecondary};
 
     & circle:last-child {
-      color: ${({ theme }) => theme.workPrimary};
+      color: ${({ theme, isRest }) =>
+        isRest ? theme.restPrimary : theme.workPrimary};
       transform-origin: center;
       transform: rotate(-90deg) rotateX(-180deg);
-      transition: stroke-dashoffset ease-out 500ms;
+      transition: stroke-dashoffset linear 1000ms;
     }
-
-    ${({ theme, isRest }) =>
-      isRest &&
-      css`
-        color: ${theme.restSecondary};
-
-        circle:last-child {
-          color: ${theme.restPrimary};
-        }
-      `}
   }
 `
 
