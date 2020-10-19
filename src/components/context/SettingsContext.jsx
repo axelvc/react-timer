@@ -28,7 +28,7 @@ const defaultSettings = JSON.parse(localStorage.getItem('settings')) || {
       useRestTime: true,
     },
   },
-  cyclesForALongRest: {
+  longRestAfter: {
     type: 'number',
     value: 4,
     defaultValue: 4,

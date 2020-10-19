@@ -3,9 +3,11 @@ import PropTypes from 'prop-types'
 
 import { Container, H1, CycleType } from './styles'
 
+const MINUTE_IN_MILISECONDS = 60000
+
 export const NextCycleInfo = ({ totalTime, useRestTime, isRest }) => (
   <Container>
-    <H1>{totalTime / 60}</H1>
+    <H1>{totalTime / MINUTE_IN_MILISECONDS}</H1>
     <p>
       minute
       {totalTime > 1 && 's'}

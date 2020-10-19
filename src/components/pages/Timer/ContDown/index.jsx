@@ -7,6 +7,8 @@ import PauseCircleIcon from '../../../../assets/svg/pause-circle-icon.svg'
 import CloseCircleIcon from '../../../../assets/svg/close-circle-icon.svg'
 import { ButtonsContainer, H1 } from './styles'
 
+const MINUTE_IN_MILISECONDS = 60000
+
 export const ContDown = ({
   timeLeft,
   paused,
@@ -18,8 +20,8 @@ export const ContDown = ({
   function humanTime() {
     const fixTwoDigits = (n) => n.toString().padStart(2, 0)
 
-    const minutes = fixTwoDigits(Math.floor(timeLeft / 60))
-    const seconds = fixTwoDigits(timeLeft % 60)
+    const minutes = fixTwoDigits(Math.floor(timeLeft / MINUTE_IN_MILISECONDS))
+    const seconds = fixTwoDigits(Math.floor((timeLeft / 1000) % 60))
 
     return `${minutes}:${seconds}`
   }

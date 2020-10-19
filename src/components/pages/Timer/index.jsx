@@ -8,6 +8,9 @@ import PlayCircleIcon from '../../../assets/svg/play-circle-icon.svg'
 
 import { useSettings } from '../../context/SettingsContext'
 
+const MINUTE_IN_MILISECONDS = 60000
+const UPDATE_INTERVAL_TIME = 100 // miliseconds
+
 export const Timer = () => {
   const [settings] = useSettings()
   const [cycle, setCycle] = useState({
@@ -15,68 +18,78 @@ export const Timer = () => {
     paused: false,
     isRest: false,
     runs: 0,
-    totalTime: settings.cycleTime.value * 60,
-    timeLeft: settings.cycleTime.value * 60,
+    totalTime: settings.cycleTime.value * MINUTE_IN_MILISECONDS,
+    timeLeft: settings.cycleTime.value * MINUTE_IN_MILISECONDS,
+    endTime: null,
   })
 
+  // update timer
   useEffect(() => {
     if (!cycle.running || cycle.paused) return
 
-    const ref = setTimeout(updateTimer, 1000)
-    return () => clearTimeout(ref)
+    const invervalId = setInterval(() => {
+      if (cycle.timeLeft < UPDATE_INTERVAL_TIME) {
+        finishTimer()
+      } else {
+        setCycle((cycle) => ({
+          ...cycle,
+          timeLeft: cycle.endTime - new Date().getTime(),
+        }))
+      }
+    }, UPDATE_INTERVAL_TIME)
+
+    return () => clearInterval(invervalId)
   }, [cycle])
 
   function playTimer() {
+    const timeLeft = cycle.paused ? cycle.timeLeft : cycle.totalTime
+
     setCycle({
       ...cycle,
       running: true,
       paused: false,
+      endTime: new Date().getTime() + timeLeft,
     })
   }
 
   function pauseTimer() {
-    setCycle({
-      ...cycle,
-      paused: true,
-    })
-  }
-
-  function updateTimer() {
-    if (cycle.timeLeft > 0) {
+    // end if is last seconds
+    if (cycle.timeLeft < 1000) {
+      finishTimer()
+    } else {
       setCycle({
         ...cycle,
-        timeLeft: cycle.timeLeft - 1,
+        paused: true,
       })
-    } else {
-      endTimer()
     }
   }
 
-  function endTimer() {
-    let nexTime = settings.cycleTime.value * 60
+  function finishTimer() {
+    let newTime = settings.cycleTime.value * MINUTE_IN_MILISECONDS
     let isRest = false
     let runs = cycle.runs
 
+    // get long or normal rest time and update runs
     if (settings.useRestTime.value && !cycle.isRest) {
       isRest = true
 
-      if (cycle.runs === settings.cyclesForALongRest.value) {
-        nexTime = settings.longRestTime.value * 60
+      if (cycle.runs === settings.longRestAfter.value) {
+        newTime = settings.longRestTime.value * MINUTE_IN_MILISECONDS
         runs = 0
       } else {
+        newTime = settings.restTime.value * MINUTE_IN_MILISECONDS
         runs += 1
-        nexTime = settings.restTime.value * 60
       }
     }
 
     setCycle({
-      ...cycle,
-      running: false,
-      paused: false,
-      timeLeft: nexTime,
-      totalTime: nexTime,
-      isRest,
       runs,
+      isRest,
+      paused: false,
+      running: false,
+      totalTime: newTime,
+      timeLeft: newTime,
+      endTime: null,
     })
   }
 
@@ -95,7 +108,7 @@ export const Timer = () => {
             timeLeft={cycle.timeLeft}
             onPlay={playTimer}
             onPause={pauseTimer}
-            onCancel={endTimer}
+            onCancel={finishTimer}
           />
         ) : (
           <LargePlayButton alternate={cycle.isRest} onClick={playTimer}>
