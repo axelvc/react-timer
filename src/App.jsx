@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { RouterProvider, Route } from './components/context/RouterContext'
-import { ThemeProvider } from './components/context/ThemeContext'
-import { SettingsProvider } from './components/context/SettingsContext'
+import { RouterProvider, Route } from './components/providers/RouterProvider'
+import { ThemeProvider } from './components/providers/ThemeProvider'
+import { SettingsProvider } from './components/providers/SettingsProvider'
 import { GlobalStyles } from './globalStyles'
 import { Timer } from './components/pages/Timer'
 import { ThemeSettings } from './components/pages/ThemeSettings'

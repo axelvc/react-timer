@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { useRouter } from '../../context/RouterContext.jsx'
+import { useRouter } from '../../providers/RouterProvider'
 
 import { Button } from './styles'
 

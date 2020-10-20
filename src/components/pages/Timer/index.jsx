@@ -6,7 +6,7 @@ import { NextCycleInfo } from './NextCycleInfo'
 import { Container, LargePlayButton } from './styles'
 import PlayCircleIcon from '../../../assets/svg/play-circle-icon.svg'
 
-import { useSettings } from '../../context/SettingsContext'
+import { useSettings } from '../../providers/SettingsProvider'
 
 const MINUTE_IN_MILISECONDS = 60000
 const UPDATE_INTERVAL_TIME = 100 // miliseconds

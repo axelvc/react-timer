@@ -6,7 +6,7 @@ import CloseIcon from '../../assets/svg/close-icon.svg'
 import ThemeIcon from '../../assets/svg/theme-icon.svg'
 import SettingsIcon from '../../assets/svg/settings-icon.svg'
 
-import { useRouter } from '../context/RouterContext'
+import { useRouter } from '../providers/RouterProvider'
 
 const routesList = [
   { path: 'theme', Icon: ThemeIcon },

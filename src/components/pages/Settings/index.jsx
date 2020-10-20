@@ -4,7 +4,7 @@ import { NumberInput } from './NumberInput'
 import { SwitchButton } from './SwitchButton'
 import { Main, AboutLink } from './styles'
 
-import { useSettings, settingsSchema } from '../../context/SettingsContext'
+import { useSettings, settingsSchema } from '../../providers/SettingsProvider'
 
 export const Settings = () => {
   const [settings, updateSettings] = useSettings()
