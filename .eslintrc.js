@@ -18,11 +18,13 @@ module.exports = {
       version: 'detect',
     },
     'import/extensions': ['.js', '.jsx'],
+    'import/resolver': 'webpack',
   },
   rules: {
     'comma-dangle': ['error', 'always-multiline'],
     'space-before-function-paren': ['error', 'never'],
     'arrow-body-style': 'error',
+    'import/extensions': 'error',
     'import/no-useless-path-segments': [
       'error',
       {
