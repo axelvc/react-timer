@@ -4,14 +4,14 @@ import { NumberInput } from './NumberInput'
 import { SwitchButton } from './SwitchButton'
 import { Main, AboutLink } from './styles'
 
-import { useSettings } from '../../context/SettingsContext'
+import { useSettings, settingsSchema } from '../../context/SettingsContext'
 
 export const Settings = () => {
-  const [settings, setSettings] = useSettings()
+  const [settings, updateSettings] = useSettings()
 
   function handleDisabled(dependencies) {
     for (const key in dependencies) {
-      if (settings[key].value !== dependencies[key]) {
+      if (settings[key] !== dependencies[key]) {
         return true
       }
     }
@@ -20,19 +20,15 @@ export const Settings = () => {
   }
 
   function handleChange(key, value) {
-    setSettings({
-      ...settings,
-      [key]: {
-        ...settings[key],
-        value,
-      },
-    })
+    updateSettings({ [key]: value })
   }
 
   return (
     <Main>
-      {Object.entries(settings).map(
-        ([key, { type, value, defaultValue, dependencies }], index, arr) => (
+      {Object.entries(settings).map(([key, value]) => {
+        const { type, defaultValue, dependencies } = settingsSchema[key]
+
+        return (
           <React.Fragment key={key}>
             {type === 'number' ? (
               <NumberInput
@@ -51,8 +47,8 @@ export const Settings = () => {
             )}
             <br />
           </React.Fragment>
-        ),
-      )}
+        )
+      })}
       <AboutLink to="about">About app</AboutLink>
     </Main>
   )

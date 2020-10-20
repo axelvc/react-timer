@@ -2,19 +2,17 @@ import React, { createContext, useState, useContext } from 'react'
 
 const SettingsContext = createContext()
 
-const defaultSettings = JSON.parse(localStorage.getItem('settings')) || {
+export const settingsSchema = {
   cycleTime: {
     type: 'number',
-    value: 25,
     defaultValue: 25,
   },
   useRestTime: {
     type: 'boolean',
-    value: true,
+    defaultValue: true,
   },
   restTime: {
     type: 'number',
-    value: 5,
     defaultValue: 5,
     dependencies: {
       useRestTime: true,
@@ -22,7 +20,6 @@ const defaultSettings = JSON.parse(localStorage.getItem('settings')) || {
   },
   longRestTime: {
     type: 'number',
-    value: 20,
     defaultValue: 20,
     dependencies: {
       useRestTime: true,
@@ -30,7 +27,6 @@ const defaultSettings = JSON.parse(localStorage.getItem('settings')) || {
   },
   longRestAfter: {
     type: 'number',
-    value: 4,
     defaultValue: 4,
     dependencies: {
       useRestTime: true,
@@ -39,7 +35,15 @@ const defaultSettings = JSON.parse(localStorage.getItem('settings')) || {
 }
 
 export const SettingsProvider = (props) => {
-  const [settings, setSettings] = useState(defaultSettings)
+  const [settings, setSettings] = useState(() => {
+    const savedSettings = JSON.parse(localStorage.getItem('settings')) || {}
+
+    for (const key in settingsSchema) {
+      savedSettings[key] = settingsSchema[key].defaultValue
+    }
+
+    return savedSettings
+  })
 
   function changeSettings(newValues) {
     const newSettings = {

@@ -18,8 +18,8 @@ export const Timer = () => {
     paused: false,
     isRest: false,
     runs: 0,
-    totalTime: settings.cycleTime.value * MINUTE_IN_MILISECONDS,
-    timeLeft: settings.cycleTime.value * MINUTE_IN_MILISECONDS,
+    totalTime: settings.cycleTime * MINUTE_IN_MILISECONDS,
+    timeLeft: settings.cycleTime * MINUTE_IN_MILISECONDS,
     endTime: null,
   })
 
@@ -65,19 +65,19 @@ export const Timer = () => {
   }
 
   function finishTimer() {
-    let newTime = settings.cycleTime.value * MINUTE_IN_MILISECONDS
+    let newTime = settings.cycleTime * MINUTE_IN_MILISECONDS
     let isRest = false
     let runs = cycle.runs
 
     // get long or normal rest time and update runs
-    if (settings.useRestTime.value && !cycle.isRest) {
+    if (settings.useRestTime && !cycle.isRest) {
       isRest = true
 
-      if (cycle.runs === settings.longRestAfter.value) {
-        newTime = settings.longRestTime.value * MINUTE_IN_MILISECONDS
+      if (cycle.runs === settings.longRestAfter) {
+        newTime = settings.longRestTime * MINUTE_IN_MILISECONDS
         runs = 0
       } else {
-        newTime = settings.restTime.value * MINUTE_IN_MILISECONDS
+        newTime = settings.restTime * MINUTE_IN_MILISECONDS
         runs += 1
       }
     }
@@ -119,7 +119,7 @@ export const Timer = () => {
       {!cycle.running && (
         <NextCycleInfo
           totalTime={cycle.totalTime}
-          useRestTime={settings.useRestTime.value}
+          useRestTime={settings.useRestTime}
           isRest={cycle.isRest}
         />
       )}
