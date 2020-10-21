@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { InputBox } from '../../../common/InputBox'
-import { Label } from './styles'
+
+import styles from './styles.module.scss'
 
 export const SwitchButton = ({ title, active, onChange }) => {
   function handleClickSwitch(ev) {
@@ -13,8 +14,8 @@ export const SwitchButton = ({ title, active, onChange }) => {
 
   return (
     <InputBox title={title}>
-      <Label
-        active={active}
+      <label
+        className={active ? styles.switchEnabled : styles.switchDisabled}
         tabIndex="0"
         htmlFor={title}
         onKeyPress={handleClickSwitch}
@@ -24,9 +25,9 @@ export const SwitchButton = ({ title, active, onChange }) => {
           id={title}
           type="checkbox"
           checked={active}
-          onChange={({ target: { checked } }) => onChange(title, checked)}
+          onChange={(ev) => onChange(title, ev.target.checked)}
         />
-      </Label>
+      </label>
     </InputBox>
   )
 }

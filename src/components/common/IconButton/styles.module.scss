@@ -1,0 +1,41 @@
+%button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: var(--sizes-input-box);
+  transition: var(--transition-normal);
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  & > * {
+    height: 80%;
+    width: 80%;
+  }
+}
+
+%getColors {
+  color: var(--color-work-primary);
+  background: var(--color-work-secondary);
+
+  &.alternative {
+    color: var(--color-rest-primary);
+    background: var(--color-rest-secondary);
+  }
+}
+
+.normalButton {
+  @extend %button;
+  @extend %getColors;
+}
+
+.flatButton {
+  @extend %button;
+  color: var(--color-text-secondary);
+
+  &:hover {
+    @extend %getColors;
+  }
+}

@@ -1,21 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Container, H1, CycleType } from './styles'
+import styles from './styles.module.scss'
 
 const MINUTE_IN_MILISECONDS = 60000
 
 export const NextCycleInfo = ({ totalTime, useRestTime, isRest }) => (
-  <Container>
-    <H1>{totalTime / MINUTE_IN_MILISECONDS}</H1>
-    <p>
-      minute
-      {totalTime > 1 && 's'}
+  <div className={styles.container}>
+    <h1 className={styles.minutesNumber}>
+      {totalTime / MINUTE_IN_MILISECONDS}
+    </h1>
+    <p className={styles.minuteText}>
+      {`${totalTime > 1 ? 'minutes' : 'minutes'}`}
     </p>
     {useRestTime && (
-      <CycleType isRest={isRest}>{isRest ? 'Rest' : 'Work'} time</CycleType>
+      <p className={`${isRest ? styles.restTime : styles.workTime}`}>
+        {isRest ? 'Rest' : 'Work'} time
+      </p>
     )}
-  </Container>
+  </div>
 )
 
 NextCycleInfo.propTypes = {

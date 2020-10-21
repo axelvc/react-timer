@@ -3,10 +3,12 @@ import React, { useState, useEffect } from 'react'
 import { TimerCircle } from './TimerCircle'
 import { ContDown } from './ContDown'
 import { NextCycleInfo } from './NextCycleInfo'
-import { Container, LargePlayButton } from './styles'
+import { IconButton } from '../../common/IconButton'
 import PlayCircleIcon from '../../../assets/svg/play-circle-icon.svg'
 
 import { useSettings } from '../../providers/SettingsProvider'
+
+import styles from './styles.module.scss'
 
 const MINUTE_IN_MILISECONDS = 60000
 const UPDATE_INTERVAL_TIME = 100 // miliseconds
@@ -94,12 +96,11 @@ export const Timer = () => {
   }
 
   return (
-    <Container>
+    <main className={styles.container}>
       <TimerCircle
         isRest={cycle.isRest}
         totalTime={cycle.totalTime}
         timeLeft={cycle.timeLeft}
-        running={cycle.running}
       >
         {cycle.running ? (
           <ContDown
@@ -111,9 +112,13 @@ export const Timer = () => {
             onCancel={finishTimer}
           />
         ) : (
-          <LargePlayButton alternate={cycle.isRest} onClick={playTimer}>
+          <IconButton
+            className={styles.largePlayButton}
+            alternative={cycle.isRest}
+            onClick={playTimer}
+          >
             <PlayCircleIcon />
-          </LargePlayButton>
+          </IconButton>
         )}
       </TimerCircle>
       {!cycle.running && (
@@ -123,6 +128,6 @@ export const Timer = () => {
           isRest={cycle.isRest}
         />
       )}
-    </Container>
+    </main>
   )
 }

@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { InputBox } from '../../../common/InputBox'
-import { Input } from './styles'
+
+import styles from './styles.module.scss'
 
 export const NumberInput = ({
   title,
@@ -13,9 +14,8 @@ export const NumberInput = ({
 }) => {
   function handleType(ev) {
     const { key, target } = ev
-    const { value } = target
 
-    if (Number.isNaN(Number(key)) || value.length >= 3) {
+    if (Number.isNaN(Number(key)) || target.value.length >= 3) {
       ev.preventDefault()
     }
   }
@@ -29,7 +29,8 @@ export const NumberInput = ({
 
   return (
     <InputBox title={title} disabled={disabled}>
-      <Input
+      <input
+        className={styles.input}
         type="number"
         id={title}
         min="0"

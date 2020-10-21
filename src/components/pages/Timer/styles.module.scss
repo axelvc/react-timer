@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  user-select: none;
+}
+
+.largePlayButton {
+  height: 60%;
+  width: 60%;
+}

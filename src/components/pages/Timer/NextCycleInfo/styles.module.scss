@@ -1,0 +1,25 @@
+.container {
+  text-align: center;
+  font-size: var(--font-size-extra-large);
+}
+
+.minutesNumber {
+  line-height: 1;
+}
+
+.minuteText {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--sizes-spacing-sort);
+}
+
+.workTime {
+  opacity: 0.8;
+  padding: 0 var(--sizes-spacing-sort);
+  background: var(--color-work-secondary);
+  color: var(--color-text-primary);
+}
+
+.restTime {
+  @extend .workTime;
+  background: var(--color-rest-secondary);
+}

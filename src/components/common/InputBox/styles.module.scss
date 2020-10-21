@@ -1,0 +1,20 @@
+.inputBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: var(--transition-normal) opacity;
+  margin-bottom: var(--sizes-spacing-normal);
+
+  &:last-of-type {
+    margin-bottom: unset;
+  }
+
+  & > label:first-child {
+    margin-right: initial;
+  }
+}
+
+.inputBoxDisabled {
+  @extend .inputBox;
+  opacity: 0.5;
+}

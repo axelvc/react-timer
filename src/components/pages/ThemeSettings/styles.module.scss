@@ -1,0 +1,19 @@
+.input {
+  padding: 0;
+  width: var(--sizes-input-box);
+  border: none;
+
+  &::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+
+  &::-webkit-color-swatch {
+    border: none;
+    border-radius: 3px;
+  }
+}
+
+.borderedInput {
+  @extend .input;
+  border: 1px solid var(--color-text-secondary);
+}

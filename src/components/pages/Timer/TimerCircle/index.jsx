@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import ProgressCircle from '../../../../assets/svg/progress-circle.svg'
-import { Container, Wrapper } from './styles'
+
+import styles from './styles.module.scss'
 
 const STROKE_LENGTH = 723
 
@@ -15,10 +16,10 @@ export const TimerCircle = ({ isRest, totalTime, timeLeft, ...props }) => {
   }
 
   return (
-    <Container isRest={isRest} {...props}>
+    <div className={isRest ? styles.restTimer : styles.workTimer}>
       <ProgressCircle strokeDashoffset={getDashOffset(timeLeft, totalTime)} />
-      <Wrapper {...props} />
-    </Container>
+      <div className={styles.wrapper} {...props} />
+    </div>
   )
 }
 

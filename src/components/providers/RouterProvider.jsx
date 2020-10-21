@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const RouterContext = createContext()
 
 export const RouterProvider = (props) => {
-  const [route, setRoute] = useState('/')
+  const [route, setRoute] = useState('theme')
 
   return <RouterContext.Provider value={[route, setRoute]} {...props} />
 }

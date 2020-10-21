@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Container } from './styles'
+import styles from './styles.module.scss'
 
 export const InputBox = ({ title, disabled = false, children }) => {
   const humanTitle =
@@ -12,10 +12,10 @@ export const InputBox = ({ title, disabled = false, children }) => {
       .toLowerCase()
 
   return (
-    <Container disabled={disabled}>
+    <div className={`${disabled ? styles.inputBoxDisabled : styles.inputBox}`}>
       <label htmlFor={title}> {humanTitle}</label>
       {children}
-    </Container>
+    </div>
   )
 }
 

@@ -1,12 +1,13 @@
 import React from 'react'
 
-import { Nav, Ul, Li, LiExpanded } from './styles'
 import { IconButton } from '../common/IconButton'
 import CloseIcon from '../../assets/svg/close-icon.svg'
 import ThemeIcon from '../../assets/svg/theme-icon.svg'
 import SettingsIcon from '../../assets/svg/settings-icon.svg'
 
 import { useRouter } from '../providers/RouterProvider'
+
+import styles from './styles.module.scss'
 
 const routesList = [
   { path: 'theme', Icon: ThemeIcon },
@@ -17,27 +18,27 @@ export const Navbar = () => {
   const [route, setRoute] = useRouter()
 
   return (
-    <Nav>
-      <Ul>
-        <LiExpanded>
+    <nav className={styles.container}>
+      <ul className={styles.list}>
+        <li className={styles.closeButton}>
           {route !== '/' && (
             <IconButton flat onClick={() => setRoute('/')}>
               <CloseIcon />
             </IconButton>
           )}
-        </LiExpanded>
+        </li>
         {routesList.map(({ path, Icon }) => (
-          <Li key={path}>
+          <li key={path} className={styles.navOption}>
             <IconButton
               flat={path !== route}
-              alternate={path === route}
+              alternative={path === route}
               onClick={() => setRoute(path)}
             >
               <Icon />
             </IconButton>
-          </Li>
+          </li>
         ))}
-      </Ul>
-    </Nav>
+      </ul>
+    </nav>
   )
 }

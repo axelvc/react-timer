@@ -1,26 +1,28 @@
 import React from 'react'
 
-import { ColorInput } from './ColorInput'
+import { InputBox } from '../../common/InputBox'
 
-import { useTheme } from 'styled-components'
+import { useTheme } from '../../providers/ThemeProvider'
 
-const divisionIndexes = [0, 2, 4]
+import styles from './styles.module.scss'
 
 export const ThemeSettings = () => {
-  const { changeTheme, ...theme } = useTheme()
+  const [theme, setTheme] = useTheme()
 
   return (
     <main>
-      {Object.entries(theme).map(([key, color], index, arr) => (
-        <React.Fragment key={key}>
-          <ColorInput
-            title={key}
-            color={color}
-            onChange={(newValue) => changeTheme(newValue)}
+      {Object.entries(theme).map(([key, color]) => (
+        <InputBox key={key} title={key}>
+          <input
+            id={key}
+            type="color"
+            defaultValue={color}
+            onBlur={(ev) => setTheme(key, ev.target.value)}
+            className={
+              key === 'background' ? styles.borderedInput : styles.input
+            }
           />
-          {index !== arr.length - 1 &&
-            (divisionIndexes.includes(index) ? <hr /> : <br />)}
-        </React.Fragment>
+        </InputBox>
       ))}
     </main>
   )

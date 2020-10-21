@@ -1,0 +1,170 @@
+@import './assets/fonts/Montserrat/Montserrat.css';
+
+:root {
+  --color-background: #fafafa;
+  --color-text-primary: #252627;
+  --color-text-secondary: #abb8c3;
+  --color-work-primary: #0693e3;
+  --color-work-secondary: #8ed1fc;
+  --color-rest-primary: #f3537b;
+  --color-rest-secondary: #f78da7;
+
+  --transition-fast: 100ms;
+  --transition-normal: 200ms;
+  --transition-late: 500ms;
+
+  --font-size-small: 0.8rem;
+  --font-size-normal: 1rem;
+  --font-size-large: 1.1rem;
+  --font-size-extra-large: 1.3rem;
+  --font-size-sub-title: 1.5rem;
+  --font-size-title: 3.5rem;
+
+  --font-weight-regular: 500;
+  --font-weight-bold: 600;
+
+  // General sizes
+  --sizes-spacing-sort: 5px;
+  --sizes-spacing-normal: 20px;
+  --sizes-input-box: 28px;
+}
+
+%removeMargin {
+  margin: 0;
+}
+
+%removePadding {
+  padding: 0;
+}
+
+%accessibility {
+  outline: none;
+
+  &:focus {
+    box-shadow: 0 0 0 2px var(--color-rest-primary);
+    z-index: 1;
+  }
+
+  &::selection {
+    background: var(--color-rest-primary);
+    color: var(--color-background);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-work-secondary);
+  &:hover {
+    background: var(--color-work-primary);
+  }
+}
+
+*::selection {
+  background: var(--color-work-primary);
+  color: var(--color-background);
+}
+
+body {
+  @extend %removeMargin;
+
+  font-family: Montserrat;
+  font-weight: var(--font-weight-regular);
+}
+
+#app {
+  height: 100vh;
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+main {
+  padding: 20px;
+  flex: 1;
+  overflow: auto;
+}
+
+@for $i from 1 through 6 {
+  h#{7 - $i} {
+    @extend %removeMargin;
+  }
+}
+
+h1 {
+  font-size: var(--font-size-title);
+}
+
+h6 {
+  font-size: var(--font-size-large);
+}
+
+p {
+  @extend %removeMargin;
+}
+
+ul {
+  @extend %removeMargin;
+  @extend %removePadding;
+}
+
+li {
+  list-style: none;
+}
+
+label {
+  @extend %accessibility;
+
+  font-size: var(--font-size-large);
+  font-weight: var(--font-weight-bold);
+  user-select: none;
+}
+
+input,
+button {
+  @extend %removeMargin;
+  @extend %removePadding;
+  @extend %accessibility;
+
+  height: var(--sizes-input-box);
+  font-family: inherit;
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-regular);
+  background: none;
+  color: inherit;
+  border: none;
+  border-radius: 3px;
+}
+
+input {
+  border: 1px solid var(--color-text-secondary);
+  padding: 0 var(--sizes-spacing-sort);
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: var(--color-text-secondary);
+  }
+}
+
+button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  @extend %accessibility;
+
+  color: var(--color-work-primary);
+  transition: var(--transition-times-fast);
+
+  &:focus,
+  &:hover {
+    color: var(--color-rest-primary);
+  }
+}

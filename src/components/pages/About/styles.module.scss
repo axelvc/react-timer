@@ -1,0 +1,11 @@
+.container {
+  display: grid;
+  align-items: flex-end;
+  justify-items: center;
+  padding-bottom: var(--sizes-spacing-sort);
+  grid-template-rows: auto 130px auto;
+}
+
+.details {
+  text-align: justify;
+}

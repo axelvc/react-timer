@@ -5,7 +5,8 @@ import { IconButton } from '../../../common/IconButton'
 import PlayCircleIcon from '../../../../assets/svg/play-circle-icon.svg'
 import PauseCircleIcon from '../../../../assets/svg/pause-circle-icon.svg'
 import CloseCircleIcon from '../../../../assets/svg/close-circle-icon.svg'
-import { ButtonsContainer, H1 } from './styles'
+
+import styles from './styles.module.scss'
 
 const MINUTE_IN_MILISECONDS = 60000
 
@@ -28,15 +29,15 @@ export const ContDown = ({
 
   return (
     <>
-      <H1>{humanTime()}</H1>
-      <ButtonsContainer>
-        <IconButton alternate={isRest} onClick={paused ? onPlay : onPause}>
+      <h1 className={styles.contDown}>{humanTime()}</h1>
+      <div className={styles.controls}>
+        <IconButton alternative={isRest} onClick={paused ? onPlay : onPause}>
           {paused ? <PlayCircleIcon /> : <PauseCircleIcon />}
         </IconButton>
-        <IconButton alternate={isRest} onClick={onCancel}>
+        <IconButton alternative={isRest} onClick={onCancel}>
           <CloseCircleIcon />
         </IconButton>
-      </ButtonsContainer>
+      </div>
     </>
   )
 }

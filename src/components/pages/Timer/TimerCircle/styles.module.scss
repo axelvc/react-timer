@@ -1,0 +1,45 @@
+%timerBase {
+  position: relative;
+  height: 100%;
+
+  & > svg:first-child {
+    height: 100%;
+
+    & circle:last-child {
+      transform: rotate(-90deg) rotateX(-180deg);
+      transform-origin: center;
+    }
+  }
+}
+
+@mixin setColors($colorKey) {
+  & > svg circle:first-child {
+    color: var(--color-#{$colorKey}-secondary);
+  }
+
+  & > svg circle:last-child {
+    color: var(--color-#{$colorKey}-primary);
+  }
+}
+
+.workTimer {
+  @extend %timerBase;
+  @include setColors('work');
+}
+
+.restTimer {
+  @extend %timerBase;
+  @include setColors('rest');
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}

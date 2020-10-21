@@ -2,9 +2,11 @@ import React from 'react'
 
 import { NumberInput } from './NumberInput'
 import { SwitchButton } from './SwitchButton'
-import { Main, AboutLink } from './styles'
+import { Link } from '../../common/Link'
 
 import { useSettings, settingsSchema } from '../../providers/SettingsProvider'
+
+import styles from './styles.module.scss'
 
 export const Settings = () => {
   const [settings, updateSettings] = useSettings()
@@ -24,7 +26,7 @@ export const Settings = () => {
   }
 
   return (
-    <Main>
+    <main className={styles.container}>
       {Object.entries(settings).map(([key, value]) => {
         const { type, defaultValue, dependencies } = settingsSchema[key]
 
@@ -45,11 +47,12 @@ export const Settings = () => {
                 onChange={handleChange}
               />
             )}
-            <br />
           </React.Fragment>
         )
       })}
-      <AboutLink to="about">About app</AboutLink>
-    </Main>
+      <Link to="about" className={styles.aboutLink}>
+        About app
+      </Link>
+    </main>
   )
 }

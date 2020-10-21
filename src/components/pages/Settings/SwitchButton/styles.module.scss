@@ -1,0 +1,29 @@
+.switchDisabled {
+  font-size: var(--sizes-input-box);
+  height: 1em;
+  width: 50px;
+  border-radius: 1em;
+  cursor: pointer;
+  transition: var(--transition-normal) background;
+  background: var(--color-text-secondary);
+
+  &::before {
+    content: '';
+    display: block;
+    height: 1em;
+    width: 1em;
+    transform: scale(0.6);
+    border-radius: inherit;
+    background: var(--color-background);
+    transition: var(--transition-normal) margin;
+  }
+}
+
+.switchEnabled {
+  @extend .switchDisabled;
+  background: var(--color-work-primary);
+
+  &::before {
+    margin-left: calc(100% - 1em);
+  }
+}
