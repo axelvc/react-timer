@@ -1,26 +1,20 @@
-import React, { useState, createContext, useContext } from 'react'
+import React, { createContext, useState } from 'react'
 import PropTypes from 'prop-types'
+
+import { handleUseContext } from './common'
 
 const RouterContext = createContext()
 
 export const RouterProvider = (props) => {
-  const [route, setRoute] = useState('theme')
+  const [route, setRoute] = useState('/')
 
   return <RouterContext.Provider value={[route, setRoute]} {...props} />
 }
 
-export const useRouter = () => {
-  const context = useContext(RouterContext)
-
-  if (!context) {
-    throw new Error('useRouter must be used within a RouterProvider')
-  }
-
-  return context
-}
+export const useRouter = () => handleUseContext(RouterContext, 'router')
 
 export const Route = ({ route, children }) => {
-  const [visibleRoute] = useContext(RouterContext)
+  const [visibleRoute] = useRouter()
 
   if (route === visibleRoute) {
     return children

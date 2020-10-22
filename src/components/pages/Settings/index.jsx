@@ -4,12 +4,12 @@ import { NumberInput } from './NumberInput'
 import { SwitchButton } from './SwitchButton'
 import { Link } from '../../common/Link'
 
-import { useSettings, settingsSchema } from '../../providers/SettingsProvider'
+import { useSettings } from '../../providers/SettingsProvider'
 
 import styles from './styles.module.scss'
 
 export const Settings = () => {
-  const [settings, updateSettings] = useSettings()
+  const [settings, setSettings, schema] = useSettings()
 
   function handleDisabled(dependencies) {
     for (const key in dependencies) {
@@ -21,14 +21,10 @@ export const Settings = () => {
     return false
   }
 
-  function handleChange(key, value) {
-    updateSettings({ [key]: value })
-  }
-
   return (
     <main className={styles.container}>
       {Object.entries(settings).map(([key, value]) => {
-        const { type, defaultValue, dependencies } = settingsSchema[key]
+        const { type, defaultValue, dependencies } = schema[key]
 
         return (
           <React.Fragment key={key}>
@@ -37,15 +33,11 @@ export const Settings = () => {
                 title={key}
                 value={value}
                 defaultValue={defaultValue}
-                onChange={handleChange}
+                onChange={setSettings}
                 disabled={dependencies && handleDisabled(dependencies)}
               />
             ) : (
-              <SwitchButton
-                title={key}
-                active={value}
-                onChange={handleChange}
-              />
+              <SwitchButton title={key} active={value} onChange={setSettings} />
             )}
           </React.Fragment>
         )

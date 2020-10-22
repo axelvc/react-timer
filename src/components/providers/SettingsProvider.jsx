@@ -1,8 +1,10 @@
-import React, { createContext, useState, useContext } from 'react'
+import React, { createContext } from 'react'
+import { useStorage, handleUseContext } from './common'
 
 const SettingsContext = createContext()
 
-export const settingsSchema = {
+const NAME = 'settings'
+export const SETTINGS_SCHEMA = {
   cycleTime: {
     type: 'number',
     defaultValue: 25,
@@ -35,37 +37,32 @@ export const settingsSchema = {
 }
 
 export const SettingsProvider = (props) => {
-  const [settings, setSettings] = useState(() => {
-    const savedSettings = JSON.parse(localStorage.getItem('settings')) || {}
+  const [settings, setSettings] = useStorage(NAME)
 
-    for (const key in settingsSchema) {
-      savedSettings[key] = settingsSchema[key].defaultValue
+  // Set default settings if there isn't in storage
+  if (!settings) {
+    const defaultSettings = {}
+
+    for (const key in SETTINGS_SCHEMA) {
+      defaultSettings[key] = SETTINGS_SCHEMA[key].defaultValue
     }
 
-    return savedSettings
-  })
+    setSettings(defaultSettings)
+  }
 
-  function changeSettings(newValues) {
-    const newSettings = {
+  function changeSettings(key, newValue) {
+    setSettings({
       ...settings,
-      ...newValues,
-    }
-
-    setSettings(newSettings)
-    localStorage.setItem('settings', JSON.stringify(newSettings))
+      [key]: newValue,
+    })
   }
 
   return (
-    <SettingsContext.Provider value={[settings, changeSettings]} {...props} />
+    <SettingsContext.Provider
+      value={[settings, changeSettings, SETTINGS_SCHEMA]}
+      {...props}
+    />
   )
 }
 
-export const useSettings = () => {
-  const context = useContext(SettingsContext)
-
-  if (!context) {
-    throw new Error('useSettings must be used within a SettingsProvider')
-  }
-
-  return context
-}
+export const useSettings = () => handleUseContext(SettingsContext, NAME)
