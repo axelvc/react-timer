@@ -1,8 +1,11 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+const isDevMode = process.env.NODE_ENV === 'development'
 
 module.exports = {
-  mode: 'development',
+  mode: isDevMode ? 'development' : 'production',
   entry: './src/index.jsx',
   output: {
     path: path.join(__dirname, 'dist'),
@@ -20,7 +23,11 @@ module.exports = {
       },
       {
         test: /.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [
+          isDevMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+        ],
       },
       {
         test: /\.(woff2?|eot|ttf|otf)$/,
@@ -43,5 +50,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/assets/index.html',
     }),
+    !isDevMode ? new MiniCssExtractPlugin() : () => {},
   ],
 }

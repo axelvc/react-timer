@@ -5,8 +5,9 @@
   "license": "MIT",
   "description": "A timer to focus and improve your productivity inspired by the pomodoro technique",
   "scripts": {
-    "start": "webpack-dev-server",
-    "lint": "eslint src --ext .js,.jsx --fix"
+    "start": "NODE_ENV=development webpack-dev-server",
+    "lint": "eslint src --ext .js,.jsx --fix",
+    "build": "webpack"
   },
   "dependencies": {
     "react": "^16.14.0",
@@ -33,6 +34,7 @@
     "file-loader": "^6.1.1",
     "html-webpack-plugin": "^4.5.0",
     "husky": "^4.3.0",
+    "mini-css-extract-plugin": "^1.1.1",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.3",
     "style-loader": "^2.0.0",
