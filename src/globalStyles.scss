@@ -72,19 +72,27 @@ body {
 
   font-family: Montserrat;
   font-weight: var(--font-weight-regular);
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #app {
-  height: 100vh;
-  background: var(--color-background);
-  color: var(--color-text-primary);
   display: flex;
   flex-direction: column;
   overflow: hidden;
+
+  border: 1px solid var(--color-text-secondary);
+  border-radius: 10px;
+  height: 350px;
+  width: 500px;
 }
 
 main {
-  padding: 20px;
+  padding: calc(var(--sizes-spacing-normal) * 2) var(--sizes-spacing-normal);
   flex: 1;
   overflow: auto;
 }

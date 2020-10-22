@@ -10,7 +10,7 @@ export const ThemeSettings = () => {
   const [theme, setTheme] = useTheme()
 
   return (
-    <main>
+    <main className={styles.container}>
       {Object.entries(theme).map(([key, color]) => (
         <InputBox key={key} title={key}>
           <input
