@@ -2,12 +2,15 @@
   "name": "timer",
   "version": "1.0.0",
   "author": "@axelvc <a.axelvc@gmail.com>",
+  "homepage": "http://axelvc.github.io/react-timer",
   "license": "MIT",
   "description": "A timer to focus and improve your productivity inspired by the pomodoro technique",
   "scripts": {
     "start": "NODE_ENV=development webpack-dev-server",
     "lint": "eslint src --ext .js,.jsx --fix",
-    "build": "webpack"
+    "build": "webpack",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "react": "^16.14.0",
@@ -32,6 +35,7 @@
     "eslint-plugin-react": "^7.21.4",
     "eslint-plugin-standard": "^4.0.1",
     "file-loader": "^6.1.1",
+    "gh-pages": "^3.1.0",
     "html-webpack-plugin": "^4.5.0",
     "husky": "^4.3.0",
     "mini-css-extract-plugin": "^1.1.1",

@@ -12,7 +12,7 @@ export const About = () => (
       technique, I hope this application helps you to be more productive in your
       work or project. If you want to see the source code or fork this project
       you can&nbsp;
-      <a href="https://github.com" target="_blank" rel="noreferrer">
+      <a href="https://github.com/axelvc/react-timer" target="_blank" rel="noreferrer">
         here.
       </a>
     </p>
