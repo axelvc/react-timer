@@ -27,6 +27,14 @@ export const Timer = () => {
     endTime: null,
   })
 
+  // Request notifications permission
+  useEffect(() => {
+    console.log(Notification.permission)
+    if (Notification.permission === 'default') {
+      Notification.requestPermission()
+    }
+  }, [])
+
   // Update cycle time when settings changed and the timer isn't running
   useEffect(() => {
     if (cycle.running) return
@@ -79,7 +87,7 @@ export const Timer = () => {
     }
   }
 
-  function finishTimer() {
+  function finishTimer(automatic = true) {
     let newTime = getMilliseconds(settings.cycleTime)
     let isRest = false
     let runs = cycle.runs
@@ -106,6 +114,16 @@ export const Timer = () => {
       timeLeft: newTime,
       endTime: null,
     })
+
+    // Notify
+    if (automatic && Notification.permission === 'granted') {
+      const { isRest } = cycle
+
+      // eslint-disable-next-line no-unused-vars
+      const notification = new Notification(
+        `${isRest ? 'Work' : 'Rest'} time has been finished`,
+      )
+    }
   }
 
   if (route !== '/') return null
@@ -124,7 +142,7 @@ export const Timer = () => {
             timeLeft={cycle.timeLeft}
             onPlay={playTimer}
             onPause={pauseTimer}
-            onCancel={finishTimer}
+            onCancel={() => finishTimer(false)}
           />
         ) : (
           <IconButton
