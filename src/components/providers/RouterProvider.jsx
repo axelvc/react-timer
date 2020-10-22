@@ -13,10 +13,10 @@ export const RouterProvider = (props) => {
 
 export const useRouter = () => handleUseContext(RouterContext, 'router')
 
-export const Route = ({ route, children }) => {
+export const Route = ({ route, children, alwaysVisible }) => {
   const [visibleRoute] = useRouter()
 
-  if (route === visibleRoute) {
+  if (route === visibleRoute || alwaysVisible) {
     return children
   } else {
     return null
@@ -26,4 +26,5 @@ export const Route = ({ route, children }) => {
 Route.propTypes = {
   route: PropTypes.string.isRequired,
   children: PropTypes.element.isRequired,
+  alwaysVisible: PropTypes.bool,
 }

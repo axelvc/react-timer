@@ -27,7 +27,7 @@ export const SETTINGS_SCHEMA = {
       useRestTime: true,
     },
   },
-  longRestAfter: {
+  cyclesBeforeLongRest: {
     type: 'number',
     defaultValue: 4,
     dependencies: {

@@ -7,7 +7,7 @@ import styles from './styles.module.scss'
 
 const STROKE_LENGTH = 723
 
-export const TimerCircle = ({ isRest, totalTime, timeLeft, ...props }) => {
+export const ProgressBar = ({ isRest, totalTime, timeLeft, ...props }) => {
   function getDashOffset() {
     const progress = (timeLeft * 100) / totalTime
     const offsetLeft = STROKE_LENGTH * (progress / 100)
@@ -23,7 +23,7 @@ export const TimerCircle = ({ isRest, totalTime, timeLeft, ...props }) => {
   )
 }
 
-TimerCircle.propTypes = {
+ProgressBar.propTypes = {
   isRest: PropTypes.bool.isRequired,
   totalTime: PropTypes.number.isRequired,
   timeLeft: PropTypes.number.isRequired,

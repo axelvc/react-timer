@@ -1,15 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import styles from './styles.module.scss'
+import { getMinutes } from '../utils'
 
-const MINUTE_IN_MILISECONDS = 60000
+import styles from './styles.module.scss'
 
 export const NextCycleInfo = ({ totalTime, useRestTime, isRest }) => (
   <div className={styles.container}>
-    <h1 className={styles.minutesNumber}>
-      {totalTime / MINUTE_IN_MILISECONDS}
-    </h1>
+    <h1 className={styles.minutesNumber}>{getMinutes(totalTime)}</h1>
     <p className={styles.minuteText}>
       {`${totalTime > 1 ? 'minutes' : 'minutes'}`}
     </p>

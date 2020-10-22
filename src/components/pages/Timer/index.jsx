@@ -1,35 +1,48 @@
 import React, { useState, useEffect } from 'react'
 
-import { TimerCircle } from './TimerCircle'
+import { ProgressBar } from './ProgressBar'
 import { ContDown } from './ContDown'
 import { NextCycleInfo } from './NextCycleInfo'
 import { IconButton } from '../../common/IconButton'
 import PlayCircleIcon from '../../../assets/svg/play-circle-icon.svg'
 
 import { useSettings } from '../../providers/SettingsProvider'
+import { useRouter } from '../../providers/RouterProvider'
+import { getMilliseconds } from './utils'
 
 import styles from './styles.module.scss'
 
-const MINUTE_IN_MILISECONDS = 60000
 const UPDATE_INTERVAL_TIME = 100 // miliseconds
 
 export const Timer = () => {
+  const [route] = useRouter()
   const [settings] = useSettings()
   const [cycle, setCycle] = useState({
     running: false,
     paused: false,
     isRest: false,
     runs: 0,
-    totalTime: settings.cycleTime * MINUTE_IN_MILISECONDS,
-    timeLeft: settings.cycleTime * MINUTE_IN_MILISECONDS,
+    totalTime: 0,
+    timeLeft: 0,
     endTime: null,
   })
 
-  // update timer
+  // Update cycle time when settings changed and the timer isn't running
+  useEffect(() => {
+    if (cycle.running) return
+
+    setCycle({
+      ...cycle,
+      totalTime: getMilliseconds(settings.cycleTime),
+      timeLeft: getMilliseconds(settings.cycleTime),
+    })
+  }, [settings])
+
+  // Update timer
   useEffect(() => {
     if (!cycle.running || cycle.paused) return
 
-    const invervalId = setInterval(() => {
+    const timeoutId = setTimeout(() => {
       if (cycle.timeLeft < UPDATE_INTERVAL_TIME) {
         finishTimer()
       } else {
@@ -40,7 +53,7 @@ export const Timer = () => {
       }
     }, UPDATE_INTERVAL_TIME)
 
-    return () => clearInterval(invervalId)
+    return () => clearTimeout(timeoutId)
   }, [cycle])
 
   function playTimer() {
@@ -55,7 +68,7 @@ export const Timer = () => {
   }
 
   function pauseTimer() {
-    // end if is last seconds
+    // End if is last seconds
     if (cycle.timeLeft < 1000) {
       finishTimer()
     } else {
@@ -67,19 +80,19 @@ export const Timer = () => {
   }
 
   function finishTimer() {
-    let newTime = settings.cycleTime * MINUTE_IN_MILISECONDS
+    let newTime = getMilliseconds(settings.cycleTime)
     let isRest = false
     let runs = cycle.runs
 
-    // get long or normal rest time and update runs
+    // Get long or normal rest time and update runs
     if (settings.useRestTime && !cycle.isRest) {
       isRest = true
 
-      if (cycle.runs === settings.longRestAfter) {
-        newTime = settings.longRestTime * MINUTE_IN_MILISECONDS
+      if (cycle.runs === settings.cyclesBeforeLongRest) {
+        newTime = getMilliseconds(settings.longRestTime)
         runs = 0
       } else {
-        newTime = settings.restTime * MINUTE_IN_MILISECONDS
+        newTime = getMilliseconds(settings.restTime)
         runs += 1
       }
     }
@@ -95,9 +108,11 @@ export const Timer = () => {
     })
   }
 
+  if (route !== '/') return null
+
   return (
     <main className={styles.container}>
-      <TimerCircle
+      <ProgressBar
         isRest={cycle.isRest}
         totalTime={cycle.totalTime}
         timeLeft={cycle.timeLeft}
@@ -120,7 +135,7 @@ export const Timer = () => {
             <PlayCircleIcon />
           </IconButton>
         )}
-      </TimerCircle>
+      </ProgressBar>
       {!cycle.running && (
         <NextCycleInfo
           totalTime={cycle.totalTime}

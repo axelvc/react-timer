@@ -15,7 +15,7 @@ export const App = () => (
   <SettingsProvider>
     <ThemeProvider>
       <RouterProvider>
-        <Route route="/">
+        <Route route="/" alwaysVisible>
           <Timer />
         </Route>
         <Route route="theme">
