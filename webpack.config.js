@@ -23,11 +23,7 @@ module.exports = {
       },
       {
         test: /.scss$/,
-        use: [
-          isDevMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader',
-        ],
+        use: [isDevMode ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(woff2?|eot|ttf|otf)$/,
@@ -38,9 +34,12 @@ module.exports = {
         loader: '@svgr/webpack',
         options: {
           svgoConfig: {
-            plugins: {
-              removeViewBox: false,
-            },
+            plugins: [
+              {
+                name: 'removeViewBox',
+                active: false,
+              },
+            ],
           },
         },
       },
