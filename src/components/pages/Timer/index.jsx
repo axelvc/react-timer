@@ -29,7 +29,6 @@ export const Timer = () => {
 
   // Request notifications permission
   useEffect(() => {
-    console.log(Notification.permission)
     if (Notification.permission === 'default') {
       Notification.requestPermission()
     }

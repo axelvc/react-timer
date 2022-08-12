@@ -17,7 +17,7 @@ export const ProgressBar = ({ isRest, totalTime, timeLeft, ...props }) => {
 
   return (
     <div className={isRest ? styles.restTimer : styles.workTimer}>
-      <ProgressCircle strokeDashoffset={getDashOffset(timeLeft, totalTime)} />
+      <ProgressCircle width="230" heigh="230" strokeDashoffset={getDashOffset(timeLeft, totalTime)} />
       <div className={styles.wrapper} {...props} />
     </div>
   )
